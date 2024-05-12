@@ -261,8 +261,8 @@ class Initializer:
 
     def __call__(self, args, make_module = lambda x: x):
         epoch, global_step = 0, 0
-        # module = create_model(args.arch, compile=False).to(args.device)
-        module = load_model(args.init[0])
+        module = create_model(args.arch, compile=False).to(args.device)
+        
         module = make_module(module)
 
         if args.init:
