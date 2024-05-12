@@ -144,8 +144,8 @@ if args.lora:
 model.to(device)
 
 # optimizer
-optimizer = configure_optimizers(model, args.weight_decay, args.lr, (args.beta1, args.beta2))
-
+optimizer = configure_optimizers(args.weight_decay, args.lr, (args.beta1, args.beta2))
+optimizer.load_state_dict(checkpoint["optimizer"])
 # compile the model
 if compile:
     print("Compiling the model... (takes a ~minute)")
