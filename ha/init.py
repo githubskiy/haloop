@@ -261,10 +261,10 @@ class Initializer:
 
     def __call__(self, args, make_module = lambda x: x):
         epoch, global_step = 0, 0
-        module = create_model(args.arch, compile=False).to(args.device)
+        # module = create_model(args.arch, compile=False).to(args.device)
+        # module = make_module(module)
+        module = load_model(args.init[0])
         
-        module = make_module(module)
-
         if args.init:
             checkpoint = torch.load(args.init[0], map_location=args.device)
             print(checkpoint.keys())
