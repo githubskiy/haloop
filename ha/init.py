@@ -274,7 +274,7 @@ class Initializer:
                 if key in module.state_dict():
                     new_state_dict[key] = value
 
-            module.load_state_dict(checkpoint)
+            module.load_state_dict(new_state_dict)
             if len(args.init) > 1:
                 log('averaging models')
                 avg_model = torch.optim.swa_utils.AveragedModel(module)
