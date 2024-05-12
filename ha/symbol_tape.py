@@ -5,7 +5,7 @@ from typing import Protocol
 
 import torch
 
-from . import xen
+import xen
 
 
 class DictionaryLike(Protocol):

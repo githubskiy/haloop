@@ -4,10 +4,10 @@ import torch.nn as nn
 import torch.nn.functional as F
 import math
 
-from .recognizer import Decodable, TemporalClassifier
-from .attention import LayerNorm
-from .conv import ConvEncoder
-from .sinusoids import sinusoids_like
+from recognizer import Decodable, TemporalClassifier
+from attention import LayerNorm
+from conv import ConvEncoder
+from sinusoids import sinusoids_like
 
 BlockKVCache = namedtuple('BlockKVCache', ['memory', 'time'])
 Stats = namedtuple('Stats', ['meme_entropy', 'self_entropy'])

@@ -4,7 +4,7 @@ import math
 import torch
 import torch.nn.functional as F
 
-from .scan import scanrec, scanrec_log
+from scan import scanrec, scanrec_log
 
 #@torch.jit.script
 def transducer_forward_score1(

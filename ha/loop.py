@@ -1,4 +1,4 @@
-from ha import argparse
+from ha import argparse1
 from collections import Counter, defaultdict
 from itertools import chain, pairwise
 from pathlib import Path
@@ -11,13 +11,13 @@ import torch.utils.data
 from kaldialign import edit_distance, align
 import wandb
 
-from .data import concat_datasets
-from .init import create_model, log, Initializer
-from .recognizer import Decodable
-from . import symbol_tape
-from .monitor import register_activation_stat_hooks, print_activation_stat_hooks
-from .optim import LR, configure_optimizers
-from .checkpoint import Checkpointer
+from data import concat_datasets
+from init import create_model, log, Initializer
+from recognizer import Decodable
+import symbol_tape
+from monitor import register_activation_stat_hooks, print_activation_stat_hooks
+from optim import LR, configure_optimizers
+from checkpoint import Checkpointer
 
 
 
@@ -414,7 +414,7 @@ class System(nn.Module):
 
 
 def make_parser():
-    parser = argparse.ArgumentParser(formatter_class=argparse.Formatter)
+    parser = argparse1.ArgumentParser(formatter_class=argparse1.Formatter)
     Initializer.add_arguments(parser)
     parser.add_argument('--vocab', type=str, default='ascii', help="Vocabulary to use: bytes|ascii|cmu|xen|path/to/words.txt")
 

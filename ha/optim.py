@@ -6,7 +6,7 @@ import inspect
 import math
 import torch
 
-from .attention import LayerNorm
+from attention import LayerNorm
 
 
 class LR:

@@ -3,8 +3,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from .attention import LayerNorm, Block
-from .conv import DWConv1d
+from attention import LayerNorm, Block
+from conv import DWConv1d
 
 
 def sinusoids(length, channels, max_timescale=10000):

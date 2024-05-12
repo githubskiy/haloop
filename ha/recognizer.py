@@ -3,10 +3,10 @@ import torch.nn as nn
 import torch.nn.functional as F
 from typing import Protocol
 
-from .ctc import ctc_forward_score3, ctc_reduce_mean
-from .star import star_ctc_forward_score
-from .transducer import transducer_forward_score
-from .rnn import Decoder
+from ctc import ctc_forward_score3, ctc_reduce_mean
+from star import star_ctc_forward_score
+from transducer import transducer_forward_score
+from rnn import Decoder
 
 
 class Decodable(Protocol):

@@ -3,8 +3,8 @@ import torch.nn as nn
 from torch.func import functional_call, vmap, grad_and_value
 from torch.utils._pytree import tree_flatten
 
-from .recognizer import Decodable
-from .transformer import CTCAttentionDecoder
+from recognizer import Decodable
+from transformer import CTCAttentionDecoder
 
 
 class MiniSystem(nn.Module):
