@@ -144,7 +144,7 @@ if args.lora:
 model.to(device)
 
 # optimizer
-optimizer = configure_optimizers(model, args.weight_decay, args.learning_rate, (args.beta1, args.beta2), device_type)
+optimizer = configure_optimizers(model, args.weight_decay, args.lr, (args.beta1, args.beta2), device_type)
 
 # compile the model
 if compile:
