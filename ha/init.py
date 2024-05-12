@@ -2,6 +2,7 @@ import math
 import sys
 from dataclasses import asdict, dataclass
 from pathlib import Path
+from collections import OrderedDict
 
 import torch
 import torch.nn as nn
@@ -268,6 +269,11 @@ class Initializer:
         if args.init:
             checkpoint = torch.load(args.init[0], map_location=args.device)
             print(checkpoint.keys())
+            new_state_dict = OrderedDict()
+            for key, value in checkpoint.items():
+                if key in module.state_dict():
+                    new_state_dict[key] = value
+
             module.load_state_dict(checkpoint)
             if len(args.init) > 1:
                 log('averaging models')
