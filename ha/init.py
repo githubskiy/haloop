@@ -267,7 +267,7 @@ class Initializer:
 
         if args.init:
             checkpoint = torch.load(args.init[0], map_location=args.device)
-            module.load_state_dict(checkpoint)
+            module.load_state_dict(checkpoint['model'])
             if len(args.init) > 1:
                 log('averaging models')
                 avg_model = torch.optim.swa_utils.AveragedModel(module)
