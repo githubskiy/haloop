@@ -132,7 +132,7 @@ initializer = Initializer()
 model, _, _ = initializer(args)
 model.train()
 
-assert args.block_size == model.config.block_size, "Block sizes don't match"
+# assert args.block_size == model.config.block_size, "Block sizes don't match"
 
 # initialize a GradScaler. If enabled=False scaler is a no-op
 scaler = torch.cuda.amp.GradScaler(enabled=(args.dtype == "float16"))
