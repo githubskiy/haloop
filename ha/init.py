@@ -25,9 +25,9 @@ def log(*args, flush=False, **kwargs):
 class GPTConfig:
     block_size: int = 1024
     vocab_size: int = 50257 # GPT-2 vocab_size of 50257, padded up to nearest multiple of 64 for efficiency
-    n_layer: int = 12
-    n_head: int = 12
-    n_embd: int = 768
+    n_layer: int = 36
+    n_head: int = 20
+    n_embd: int = 1280
     dropout: float = 0.0
     bias: bool = False
     stable_embedding: bool = False
@@ -262,7 +262,8 @@ class Initializer:
     def __call__(self, args, make_module = lambda x: x):
         epoch, global_step = 0, 0
         # module = create_model(args.arch, compile=False).to(args.device)
-        # module = make_module(module)
+        module = load_model(args.init[0])
+        module = make_module(module)
 
         if args.init:
             checkpoint = torch.load(args.init[0], map_location=args.device)
