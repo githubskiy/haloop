@@ -91,16 +91,16 @@ def configure_optimizers(self, args, device_type='cuda', decay_lm_head=True):
                 # weights of blacklist modules will NOT be weight decayed
                 no_decay.add(fpn)
 
-    if decay_lm_head:
-        # for decoder-only models with tied outputs:
-        #
-        # subtle: 'transformer.wte.weight' and 'lm_head.weight' are tied, so they
-        # will appear in the no_decay and decay sets respectively after the above.
-        # In addition, because named_parameters() doesn't return duplicates, it
-        # will only return the first occurence, key'd by 'transformer.wte.weight', below.
-        # so let's manually remove 'lm_head.weight' from decay set. This will include
-        # this tensor into optimization via transformer.wte.weight only, and not decayed.
-        decay.remove('transformer.wte.weight')
+    # if decay_lm_head:
+    #     # for decoder-only models with tied outputs:
+    #     #
+    #     # subtle: 'transformer.wte.weight' and 'lm_head.weight' are tied, so they
+    #     # will appear in the no_decay and decay sets respectively after the above.
+    #     # In addition, because named_parameters() doesn't return duplicates, it
+    #     # will only return the first occurence, key'd by 'transformer.wte.weight', below.
+    #     # so let's manually remove 'lm_head.weight' from decay set. This will include
+    #     # this tensor into optimization via transformer.wte.weight only, and not decayed.
+    #     decay.remove('lm_head.weight')
 
     # validate that we considered every parameter
     param_dict = {pn: p for pn, p in self.named_parameters()}
