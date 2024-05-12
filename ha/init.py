@@ -263,8 +263,8 @@ class Initializer:
         epoch, global_step = 0, 0
         # module = create_model(args.arch, compile=False).to(args.device)
         # module = make_module(module)
-        module = load_model(args.init[0])
-        
+        module = load_model(args.init)
+
         if args.init:
             checkpoint = torch.load(args.init[0], map_location=args.device)
             print(checkpoint.keys())
