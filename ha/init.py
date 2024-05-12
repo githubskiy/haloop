@@ -269,12 +269,27 @@ class Initializer:
         if args.init:
             checkpoint = torch.load(args.init[0], map_location=args.device)
             print(checkpoint.keys())
-            new_state_dict = OrderedDict()
-            for key, value in checkpoint.items():
-                if key in module.state_dict():
-                    new_state_dict[key] = value
+            # new_state_dict = OrderedDict()
+            # for key, value in checkpoint.items():
+            #     if key in module.state_dict():
+            #         new_state_dict[key] = value
 
-            module.load_state_dict(new_state_dict)
+            if not 'vocab_size' in checkpoint['model_args']:
+                # assume checkpoint for a large model
+
+                checkpoint['model_args']['stable_embedding'] = True
+                checkpoint['model_args']['vocab_size'] = 50257
+                checkpoint['model_args']['bias'] = True
+
+                gptconf = GPTConfig(**checkpoint['model_args'])
+                module = nn.ModuleDict({'_orig_mod': GPT(gptconf)})
+                module.load_state_dict(checkpoint['model'], strict=False)
+            else:
+                gptconf = GPTConfig(**checkpoint['model_args'])
+                module = nn.ModuleDict({'_orig_mod': GPT(gptconf)})
+                module.load_state_dict(checkpoint['model'])
+
+            # module.load_state_dict(checkpoint)
             if len(args.init) > 1:
                 log('averaging models')
                 avg_model = torch.optim.swa_utils.AveragedModel(module)
