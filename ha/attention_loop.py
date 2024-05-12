@@ -17,11 +17,11 @@ import torch
 from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.distributed import init_process_group, destroy_process_group
 
-from . import lora
-from .checkpoint import construct_path_suffix, Checkpointer
-from .init import load_model, Initializer
-from .mlm import mask_tokens
-from .optim import LR, configure_optimizers
+import lora
+from checkpoint import construct_path_suffix, Checkpointer
+from init import load_model, Initializer
+from mlm import mask_tokens
+from optim import LR, configure_optimizers
 
 
 class Formatter(argparse.ArgumentDefaultsHelpFormatter,

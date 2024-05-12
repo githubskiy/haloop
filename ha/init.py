@@ -7,14 +7,14 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from . import lora
-from .attention import GPT
-from .attention_audio import AudioEncoder, StridingAudioEncoder
-from .checkpoint import Checkpointer
-from .recognizer import TemporalClassifier, Transducer
-from .resnet import FixupBasicBlock, FixupResNet
-from . import transformer
-from . import rnn
+import lora
+from attention import GPT
+from attention_audio import AudioEncoder, StridingAudioEncoder
+from checkpoint import Checkpointer
+from recognizer import TemporalClassifier, Transducer
+from resnet import FixupBasicBlock, FixupResNet
+import transformer
+import rnn
 
 
 def log(*args, flush=False, **kwargs):
